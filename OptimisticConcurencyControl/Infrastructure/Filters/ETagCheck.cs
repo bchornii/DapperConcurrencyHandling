@@ -21,7 +21,7 @@ namespace OptimisticConcurencyControl.Infrastructure.Filters
                 if (context.ActionArguments.TryGetValue(parameter?.Name, out var model))
                 {
                     var rowVersion = model?.GetType().GetProperties()
-                        .FirstOrDefault(p => p.GetCustomAttributes().Any(a => a.GetType() == typeof(RowVersionAttribute)));
+                        .FirstOrDefault(p => p.GetCustomAttributes().Any(a => a.GetType() == typeof(ConcurrencyVersionAttribute)));
                     if (rowVersion?.CanWrite ?? false)
                     {
                         var encodedETag = etag.ToString().Trim("\"".ToCharArray());

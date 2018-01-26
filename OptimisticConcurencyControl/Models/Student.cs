@@ -12,7 +12,7 @@ namespace OptimisticConcurencyControl.Models
         public DateTime EnrollmentDate { get; set; }    
         
         [JsonIgnore]
-        [RowVersion]
-        public byte[] Version { get; set; }
+        [ConcurrencyVersion]
+        public byte[] ConcurrencyVersion { get; set; }
     }
 }

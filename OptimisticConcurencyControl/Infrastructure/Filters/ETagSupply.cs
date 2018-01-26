@@ -15,7 +15,7 @@ namespace OptimisticConcurencyControl.Infrastructure.Filters
             if (context.Result is ObjectResult result)
             {                
                 var rowVersion = result.Value?.GetType().GetProperties()
-                    .FirstOrDefault(p => p.GetCustomAttributes().Any(a => a.GetType() == typeof(RowVersionAttribute)));
+                    .FirstOrDefault(p => p.GetCustomAttributes().Any(a => a.GetType() == typeof(ConcurrencyVersionAttribute)));
                 var rowVersionValue = rowVersion?.GetValue(result.Value);
                 if (rowVersionValue is byte[])
                 {
